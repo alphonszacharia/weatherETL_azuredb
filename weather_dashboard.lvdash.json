@@ -1,0 +1,624 @@
+{
+  "datasets": [
+    {
+      "name": "weather_summary",
+      "displayName": "Weather Summary",
+      "config": {
+        "version": "1.1",
+        "source": "adb_ws.gold.weather_summary",
+        "dimensions": [
+          {
+            "expr": "location"
+          },
+          {
+            "expr": "weather_date"
+          }
+        ],
+        "measures": [
+          {
+            "name": "avg_temperature",
+            "expr": "AVG(avg_temperature)"
+          },
+          {
+            "name": "max_temperature",
+            "expr": "MAX(max_temperature)"
+          },
+          {
+            "name": "min_temperature",
+            "expr": "MIN(min_temperature)"
+          },
+          {
+            "name": "avg_humidity",
+            "expr": "AVG(avg_humidity)"
+          },
+          {
+            "name": "total_rainfall",
+            "expr": "SUM(total_rainfall)"
+          },
+          {
+            "name": "avg_wind_speed",
+            "expr": "AVG(avg_wind_speed)"
+          },
+          {
+            "name": "avg_cloud_cover",
+            "expr": "AVG(avg_cloud_cover)"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "dadc0d40",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "title",
+            "spec": {
+              "widgetType": "text",
+              "version": 1,
+              "encodings": {
+                "text": {
+                  "lines": [
+                    "# Weather Summary\n",
+                    "Daily weather metrics by location (adb_ws.gold.weather_summary)"
+                  ],
+                  "fields": []
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 8,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "location_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1dc50cfb015a3b2f69ff58cdbf358/datasets/01f1dc50f8cc1335baa7c0a35d9afc5c_location",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "location",
+                      "expression": "`location`"
+                    },
+                    {
+                      "name": "location_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Location"
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "location",
+                    "queryName": "dashboards/01f1dc50cfb015a3b2f69ff58cdbf358/datasets/01f1dc50f8cc1335baa7c0a35d9afc5c_location"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "date_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1dc50cfb015a3b2f69ff58cdbf358/datasets/01f1dc50f8cc1335baa7c0a35d9afc5c_weather_date",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "weather_date",
+                      "expression": "`weather_date`"
+                    },
+                    {
+                      "name": "weather_date_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Date"
+              },
+              "widgetType": "filter-date-range-picker",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "weather_date",
+                    "queryName": "dashboards/01f1dc50cfb015a3b2f69ff58cdbf358/datasets/01f1dc50f8cc1335baa7c0a35d9afc5c_weather_date"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 10,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_avg_temp",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "measure(avg_temperature)",
+                      "expression": "MEASURE(`avg_temperature`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Avg Temperature"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_temperature)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_max_temp",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "measure(max_temperature)",
+                      "expression": "MEASURE(`max_temperature`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Max Temperature"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(max_temperature)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_rain",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "measure(total_rainfall)",
+                      "expression": "MEASURE(`total_rainfall`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Total Rainfall"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(total_rainfall)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "kpi_humidity",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "measure(avg_humidity)",
+                      "expression": "MEASURE(`avg_humidity`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Avg Humidity"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_humidity)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "temp_trend",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "location",
+                      "expression": "`location`"
+                    },
+                    {
+                      "name": "daily(weather_date)",
+                      "expression": "DATE_TRUNC(\"DAY\", `weather_date`)"
+                    },
+                    {
+                      "name": "measure(avg_temperature)",
+                      "expression": "MEASURE(`avg_temperature`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Avg Temperature by Day"
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(weather_date)",
+                  "displayName": "Day",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_temperature)",
+                  "displayName": "avg_temperature",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "location",
+                  "displayName": "location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 5,
+            "width": 8,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "rain_by_loc",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "location",
+                      "expression": "`location`"
+                    },
+                    {
+                      "name": "measure(total_rainfall)",
+                      "expression": "MEASURE(`total_rainfall`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Total Rainfall by Location"
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "location",
+                  "displayName": "location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_rainfall)",
+                  "displayName": "total_rainfall",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "location",
+                  "displayName": "location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 5,
+            "width": 4,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "detail",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weather_summary",
+                  "fields": [
+                    {
+                      "name": "location",
+                      "expression": "`location`"
+                    },
+                    {
+                      "name": "weather_date",
+                      "expression": "`weather_date`"
+                    },
+                    {
+                      "name": "measure(avg_temperature)",
+                      "expression": "MEASURE(`avg_temperature`)"
+                    },
+                    {
+                      "name": "measure(max_temperature)",
+                      "expression": "MEASURE(`max_temperature`)"
+                    },
+                    {
+                      "name": "measure(min_temperature)",
+                      "expression": "MEASURE(`min_temperature`)"
+                    },
+                    {
+                      "name": "measure(avg_humidity)",
+                      "expression": "MEASURE(`avg_humidity`)"
+                    },
+                    {
+                      "name": "measure(total_rainfall)",
+                      "expression": "MEASURE(`total_rainfall`)"
+                    },
+                    {
+                      "name": "measure(avg_wind_speed)",
+                      "expression": "MEASURE(`avg_wind_speed`)"
+                    },
+                    {
+                      "name": "measure(avg_cloud_cover)",
+                      "expression": "MEASURE(`avg_cloud_cover`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Daily Detail"
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "location"
+                  },
+                  {
+                    "fieldName": "weather_date"
+                  },
+                  {
+                    "fieldName": "measure(avg_temperature)"
+                  },
+                  {
+                    "fieldName": "measure(max_temperature)"
+                  },
+                  {
+                    "fieldName": "measure(min_temperature)"
+                  },
+                  {
+                    "fieldName": "measure(avg_humidity)"
+                  },
+                  {
+                    "fieldName": "measure(total_rainfall)"
+                  },
+                  {
+                    "fieldName": "measure(avg_wind_speed)"
+                  },
+                  {
+                    "fieldName": "measure(avg_cloud_cover)"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#EBEFF3",
+        "dark": "#0B1620"
+      },
+      "widgetBackgroundColor": {
+        "light": "#FCFCFD",
+        "dark": "#13232F"
+      },
+      "widgetBorderColor": {
+        "light": "#FCFCFD",
+        "dark": "#13232F"
+      },
+      "selectionColor": {
+        "light": "#2272B4",
+        "dark": "#4BA3E3"
+      },
+      "visualizationColors": [
+        "#15AFDD",
+        "#2375A8",
+        "#52A870",
+        "#C85070",
+        "#C89930",
+        "#7A5BB5"
+      ],
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED",
+      "widgetCornerRadius": 8,
+      "widgetShadow": 10,
+      "fontSettings": {
+        "base": {
+          "fontFamily": "Inter",
+          "fontColor": {
+            "light": "#08141A",
+            "dark": "#EBEBEB"
+          }
+        },
+        "widgetTitle": {
+          "fontWeight": 600
+        }
+      }
+    },
+    "applyModeEnabled": false
+  }
+}
